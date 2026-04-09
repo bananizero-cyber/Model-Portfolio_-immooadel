@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Discovery Meta Tags -->
+    <meta name="description" content="البورتفوليو الرسمي لعارض الأزياء immooadel. تصفح أحدث جلسات التصوير، المقاسات، ومعلومات التواصل للحجوزات.">
+    <meta name="keywords" content="immooadel, Model, Fashion Model, Portfolio, عارض أزياء, فاشن, أزياء, Streetwear, Lookbook">
+    <meta name="author" content="immooadel">
+    <meta name="theme-color" content="#111111">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph (تحسين شكل الرابط عند مشاركته في واتساب، انستغرام وغيرها) -->
+    <meta property="og:title" content="Model Portfolio | immooadel">
+    <meta property="og:description" content="البورتفوليو الرسمي لعارض الأزياء immooadel.">
+    <meta property="og:image" content="hero.jpg">
+    <meta property="og:type" content="website">
+
+    <title>Model Portfolio | immooadel</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Montserrat:wght@100;300;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           0. شاشة التحميل (Loader)
+           ========================================= */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #111;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+            overflow: hidden;
+        }
+
+        .loader-content {
+            position: relative;
+        }
+
+        .loader-text {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: #fff;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 300;
+            animation: pulseText 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.4; letter-spacing: 5px; filter: blur(2px); }
+            50% { opacity: 1; letter-spacing: 12px; filter: blur(0px); text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        }
+
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* =========================================
+           1. ضبط الإعدادات العامة (Reset & Base)
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #fcfcfc;    /* أبيض عاجي مريح */
+            --text-color: #111111;  /* أسود داكن جداً */
+            --accent-color: #888888; /* رمادي خفيف للتفاصيل */
+            --font-serif: 'Cormorant Garamond', serif; /* خط الفخامة */
+            --font-sans: 'Montserrat', sans-serif;      /* خط الحداثة */
+        }
+
+        html {
+            scroll-behavior: smooth; /* تمرير ناعم بين الأقسام */
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.4s ease;
+        }
+
+        /* =========================================
+           2. الهيدر (القائمة العلوية) - شفاف وراقي
+           ========================================= */
+        header {
+            padding: 30px 10%;
+            position: fixed; /* يبقى في الأعلى */
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            mix-blend-mode: difference; /* حركة ذكية لتغيير لون النص حسب الخلفية */
+            color: white; /* سيتغير تلقائياً */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            letter-spacing: 5px;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .logo:hover {
+            letter-spacing: 8px; /* تأثير أنيق وبسيط عند التمرير */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        nav ul li a:hover {
+            opacity: 0.6;
+        }
+
+        /* =========================================
+           3. قسم Hero (الواجهة) - ستايل بورتافيا
+           ========================================= */
+        .hero {
+            width: 100%;
+            background-color: #BEBEBE; /* استمرار تناسق اللون مع الصورة */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            max-width: 1279px; /* عرض الصورة الطبيعي الحقيقي */
+            display: block;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            position: absolute;
+            mix-blend-mode: difference; /* ذكاء لوني: النص يتغير لونه عكس الخلفية التي وراءه ليظل مقروءاً */
+            color: white;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 6rem;
+            font-weight: 300;
+            color: white; 
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            line-height: 1;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            animation: titleReveal 2s cubic-bezier(0.2, 1, 0.2, 1) forwards;
+            position: relative;
+        }
+
+        /* التأثير الديناميكي: الانفجار في جميع الاتجاهات والعودة (Omnidirectional Disintegrate & Return) */
+        .hero-content h1:hover {
+            animation: omniDisintegrate 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        @keyframes omniDisintegrate {
+            0% {
+                color: white;
+                letter-spacing: -2px;
+                filter: blur(0px);
+                transform: scale(1);
+                text-shadow: none;
+            }
+            15% {
+                color: transparent;
+                letter-spacing: 5px;
+                filter: blur(1px);
+                transform: scale(1.02);
+                /* تشتت خفيف جداً ومتقارب */
+                text-shadow: 
+                    0px -10px 5px rgba(255,255,255,0.8),
+                    10px -10px 5px rgba(255,255,255,0.8),
+                    10px 0px 5px rgba(255,255,255,0.8),
+                    10px 10px 5px rgba(255,255,255,0.8),
+                    0px 10px 5px rgba(255,255,255,0.8),
+                    -10px 10px 5px rgba(255,255,255,0.8),
+                    -10px 0px 5px rgba(255,255,255,0.8),
+                    -10px -10px 5px rgba(255,255,255,0.8);
+            }
+            45% {
+                color: transparent;
+                letter-spacing: 12px;
+                filter: blur(3px);
+                transform: scale(1.05);
+                /* تفكك ناعم لا يبتعد كثيراً ولا يختفي بالكامل */
+                text-shadow: 
+                    0px -30px 10px rgba(255,255,255,0.3),
+                    30px -30px 10px rgba(255,255,255,0.3),
+                    30px 0px 10px rgba(255,255,255,0.3),
+                    30px 30px 10px rgba(255,255,255,0.3),
+                    0px 30px 10px rgba(255,255,255,0.3),
+                    -30px 30px 10px rgba(255,255,255,0.3),
+                    -30px 0px 10px rgba(255,255,255,0.3),
+                    -30px -30px 10px rgba(255,255,255,0.3);
+            }
+            75% {
+                color: transparent;
+                letter-spacing: 4px;
+                filter: blur(1px);
+                transform: scale(0.98);
+                /* عودة متماسكة وناعمة */
+                text-shadow: 
+                    0px -5px 2px rgba(255,255,255,0.9),
+                    5px -5px 2px rgba(255,255,255,0.9),
+                    5px 0px 2px rgba(255,255,255,0.9),
+                    5px 5px 2px rgba(255,255,255,0.9),
+                    0px 5px 2px rgba(255,255,255,0.9),
+                    -5px 5px 2px rgba(255,255,255,0.9),
+                    -5px 0px 2px rgba(255,255,255,0.9),
+                    -5px -5px 2px rgba(255,255,255,0.9);
+            }
+            100% {
+                color: white;
+                letter-spacing: -2px;
+                filter: blur(0px);
+                transform: scale(1);
+                text-shadow: none;
+            }
+        }
+
+        .hero-content p {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            color: white;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            font-weight: 100;
+        }
+
+        /* سهم النزول */
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            font-size: 0.8rem;
+            color: white;
+            mix-blend-mode: difference; /* ليتناسب مع الخلفية بشكل ذكي */
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 100;
+            z-index: 10;
+        }
+
+        /* =========================================
+           4. معرض الصور (The Grid) - بورتافيا ستايل
+           ========================================= */
+        .gallery-section {
+            padding: 140px 0; /* مسافات واسعة */
+        }
+
+        .gallery-section h2 {
+            font-family: var(--font-serif);
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 100px;
+            letter-spacing: 2px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* صورتين في كل صف */
+            gap: 80px 50px; /* مسافات واسعة جداً */
+            padding: 0 10%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* تنسيق لجعل الصورة الأولى كاملة العرض (اختياري لستايل بورتافيا) */
+        /* .grid-item:first-child { grid-column: span 2; height: 900px; } */
+
+        .grid-item {
+            overflow: hidden;
+            height: 750px; /* صور طويلة جداً تحاكي المجلات */
+            position: relative;
+            background-color: #eee; /* لون مؤقت لحين تحميل الصور */
+            transition: 0.8s all ease-in-out;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.8s all ease;
+            cursor: pointer; /* جعل شكل المؤشر يدل على إمكانية الضغط */
+        }
+
+        /* تأثير الحركة عند تمرير الماوس */
+        .grid-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.05) contrast(1.05); /* زيادة طفيفة في الوضوح والتألق عند التمرير */
+        }
+
+        /* =========================================
+           5. قسم المقاسات (Stats)
+           ========================================= */
+        .stats-section {
+            background: #111; /* خلفية داكنة للتباين */
+            color: #fff;
+            padding: 120px 10%;
+            text-align: center;
+        }
+
+        .stats-card {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stats-card h3 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 60px;
+        }
+
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .stat {
+            flex: 1 1 120px;
+            max-width: 180px;
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .stat span {
+            display: block;
+            color: #888;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            font-weight: 100;
+        }
+
+        /* =========================================
+           6. التذييل (Footer) - التواصل
+           ========================================= */
+        footer {
+            padding: 100px 10%;
+            text-align: center;
+            background: #f9f9f9;
+        }
+
+        footer h3 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .social-links {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .social-links a {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+            font-weight: 500;
+            padding-bottom: 5px;
+            border-bottom: 1px solid transparent;
+        }
+
+        .social-links a:hover {
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        footer p {
+            font-size: 0.7rem;
+            color: #aaaaaa;
+            margin-top: 50px;
+            letter-spacing: 1px;
+        }
+
+        /* =========================================
+           7. أنيميشن (Keyframes)
+           ========================================= */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes titleReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+                letter-spacing: 25px; /* يبدأ بحروف متباعدة جداً */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                letter-spacing: -2px; /* يتقلص لشكله الطبيعي الحاد */
+            }
+        }
+
+        /* =========================================
+           8. تأثيرات التمرير (Scroll Animations)
+           ========================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px); /* يظهر من الأسفل للأعلى */
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* تأخيرات مختلفة لظهور متسلسل وراقي للعناصر */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.5s; }
+        .delay-4 { transition-delay: 0.7s; }
+
+        /* =========================================
+           9. مستعرض الصور (Lightbox)
+           ========================================= */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .lightbox.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh; /* 85% من ارتفاع الشاشة */
+            object-fit: contain;
+            animation: zoomIn 0.5s;
+        }
+
+        @keyframes zoomIn {
+            from {transform: scale(0.8); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #fff;
+            font-size: 50px;
+            font-weight: 100;
+            transition: 0.3s;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            z-index: 10001;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            color: #888;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* =========================================
+           11. إطار السلك الشائك (Barbed Wire Frame)
+           ========================================= */
+        .tribal-side {
+            position: fixed;
+            top: 0;
+            width: 25px; /* سلك رفيع وواقعي */
+            height: 100vh;
+            pointer-events: none;
+            z-index: 998;
+            mix-blend-mode: difference;
+            /* رسومات سلك شائك دقيقة (Barbed Wire) */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='200' viewBox='0 0 60 200'%3E%3Cpath d='M20,0 Q30,25 20,50 T20,100 Q30,125 20,150 T20,200' fill='none' stroke='%23ffffff' stroke-width='1.5'/%3E%3Cpath d='M30,0 Q20,25 30,50 T30,100 Q20,125 30,150 T30,200' fill='none' stroke='%23ffffff' stroke-width='1.5'/%3E%3Cpath d='M15,45 L35,55 M15,55 L35,45' stroke='%23ffffff' stroke-width='2'/%3E%3Cpath d='M15,45 L0,35 M35,55 L50,70 M15,55 L0,70 M35,45 L50,35' stroke='%23ffffff' stroke-width='1.5'/%3E%3Cpath d='M15,145 L35,155 M15,155 L35,145' stroke='%23ffffff' stroke-width='2'/%3E%3Cpath d='M15,145 L0,135 M35,155 L50,170 M15,155 L0,170 M35,145 L50,135' stroke='%23ffffff' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-repeat: repeat-y;
+            background-size: 100% 120px; /* لجعل العقد متقاربة نسبياً */
+            background-position: left center;
+        }
+
+        .tribal-left {
+            left: 5px; /* إبعاد خفيف عن حافة الشاشة */
+        }
+
+        .tribal-right {
+            right: 5px;
+            transform: scaleX(-1);
+        }
+
+        /* إخفاء الإطار في الشاشات الصغيرة لعدم الازدحام */
+        @media (max-width: 768px) {
+            .tribal-side { display: none; }
+        }
+
+        /* =========================================
+           12. تحسين للتجاوب (Responsive)
+           ========================================= */
+        @media (max-width: 1024px) {
+            .grid-container { gap: 40px 20px; }
+            .grid-item { height: 550px; }
+            .hero-content h1 { font-size: 4rem; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 20px 5%; }
+            nav ul { display: none; } /* إخفاء القائمة في الهواتف للبساطة */
+            .logo { font-size: 1rem; }
+            
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-content p { font-size: 0.8rem; letter-spacing: 4px; }
+
+            .grid-container { grid-template-columns: 1fr; padding: 0 5%; } /* صورة واحدة في الصف */
+            .grid-item { height: 500px; }
+            
+            .gallery-section { padding: 80px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loader" class="loader-wrapper">
+        <div class="loader-content">
+            <span class="loader-text">immooadel</span>
+        </div>
+    </div>
+
+    <!-- الإطار القبلي الجانبي (Tribal Spikes) -->
+    <div class="tribal-side tribal-left"></div>
+    <div class="tribal-side tribal-right"></div>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">immooadel</a>
+            <ul>
+                <li><a href="#gallery">Lookbook</a></li>
+                <li><a href="#stats">Measurements</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="hero.jpg" alt="Model Hero" class="hero-image">
+        <div class="hero-content">
+            <h1>immooadel</h1>
+            <p>Model Management</p>
+        </div>
+        <div class="scroll-down">Scroll</div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <h2 class="reveal">THE LOOKBOOK</h2>
+        <div class="grid-container">
+            <div class="grid-item reveal delay-1"><img src="img1.jpg" alt="Portfolio Look 1"></div>
+            <div class="grid-item reveal delay-2"><img src="img2.jpg" alt="Portfolio Look 2"></div>
+            <div class="grid-item reveal delay-1"><img src="img3.jpg" alt="Portfolio Look 3"></div>
+            <div class="grid-item reveal delay-2"><img src="img4.jpg" alt="Portfolio Look 4"></div>
+            <div class="grid-item reveal delay-1"><img src="img5.jpg" alt="Portfolio Look 5"></div>
+            <div class="grid-item reveal delay-2"><img src="img6.jpg" alt="Portfolio Look 6"></div>
+        </div>
+    </section>
+
+    <section id="stats" class="stats-section">
+        <div class="stats-card">
+            <h3 class="reveal">Measurements</h3>
+            <div class="stats-grid">
+                <div class="stat reveal delay-1"><span>Height</span> 185.8 cm</div>
+                <div class="stat reveal delay-2"><span>Chest</span> 92 cm</div>
+                <div class="stat reveal delay-3"><span>Waist</span> 74 cm</div>
+                <div class="stat reveal delay-4"><span>Hips</span> 88 cm</div>
+                <div class="stat reveal delay-1"><span>Shoes</span> 41</div>
+                <div class="stat reveal delay-2"><span>Eyes</span> Brown</div>
+                <div class="stat reveal delay-3"><span>Hair</span> Black</div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h3 class="reveal">Bookings</h3>
+        <div class="social-links reveal delay-1">
+            <a href="https://www.instagram.com/immooadel?igsh=MTdoNjFzcDZzeWRoaw%3D%3D&utm_source=qr" target="_blank">Instagram</a>
+            <a href="https://www.tiktok.com/@moadel249?_r=1&_t=ZS-950oUMiZuz7" target="_blank">TikTok</a>
+            <a href="https://www.facebook.com/share/17QVXPTnoD/?mibextid=wwXIfr" target="_blank">Facebook</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Moa428687@gmail.com" target="_blank">Gmail</a>
+        </div>
+        <p>© 2026 Model Portfolio. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Lightbox (مستعرض الصور) -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="">
+    </div>
+
+    <script>
+        // إجبار المتصفح على العودة لأعلى الصفحة (الرئيسية) عند تحديث الصفحة
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
+        // إخفاء شاشة التحميل عند اكتمال تحميل الصفحة
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            // تأخير بسيط لإعطاء الفخامة وللتأكد من أن كل شيء يبدو رائعاً
+            setTimeout(function() {
+                loader.classList.add('loader-hidden');
+            }, 800);
+        });
+
+        // تأثيرات التمرير الجمالية - تكشف عن العناصر أثناء النزول
+        function revealElements() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                // العنصر يظهر عندما يكون على بُعد 100 بكسل من أسفل الشاشة
+                var elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        // الاستماع لحركة التمرير (Scroll)
+        window.addEventListener("scroll", revealElements);
+        // استدعاء الدالة فوراً لاحتمال وجود عناصر ظاهرة عند فتح الصفحة
+        revealElements();
+
+        // مستعرض الصور (Lightbox)
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const galleryImages = document.querySelectorAll('.grid-item img');
+
+        // فتح المستعرض عند الضغط على أي صورة
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                lightbox.style.display = "block"; // إظهار العنصر
+                setTimeout(() => {
+                    lightbox.classList.add('show'); // إضافة التأثير الانتقالي
+                }, 10);
+                lightboxImg.src = this.src; // تعيين مسار الصورة
+            });
+        });
+
+        // دالة الإغلاق
+        function closeLightbox() {
+            lightbox.classList.remove('show');
+            setTimeout(() => {
+                lightbox.style.display = "none";
+            }, 500); // الانتظار حتى ينتهي التأثير الانتقالي
+        }
+
+        // إغلاق عند الضغط على علامة X
+        lightboxClose.addEventListener('click', closeLightbox);
+        
+        // إغلاق عند الضغط في أي مكان خارج الصورة
+        lightbox.addEventListener('click', function(e) {
+            if (e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+    </script>
+
+</body>
+</html>

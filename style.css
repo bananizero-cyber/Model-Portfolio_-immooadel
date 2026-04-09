@@ -1,0 +1,30 @@
+/* تحويل التصميم إلى ستايل Portavia */
+body {
+    background-color: #fcfcfc; /* لون أبيض مائل للعاجي مريح للعين */
+    color: #111;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif; /* خط كلاسيكي فخم */
+    font-weight: 900;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* صورتين في كل صف لإعطاء حجم أكبر لكل صورة */
+    gap: 40px; /* مسافات واسعة جداً بين الصور */
+    padding: 0 10%;
+}
+
+.grid-item {
+    height: 700px; /* صور طويلة جداً تحاكي مجلات الموضة */
+    filter: grayscale(20%); /* لمسة سينمائية خفيفة */
+    transition: 0.8s all ease;
+}
+
+.grid-item:hover {
+    filter: grayscale(0%);
+    transform: translateY(-10px); /* حركة صعود خفيفة عند المرور بالماوس */
+}
